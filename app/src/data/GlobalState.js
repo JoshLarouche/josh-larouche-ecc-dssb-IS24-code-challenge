@@ -38,7 +38,7 @@ export const GlobalProvider = ({ children }) => {
       productId: i,
       productName: `Product ${i}`,
       productOwnerName: `Owner ${i}`,
-      Developers: [
+      developers: [
         `Developer 1`,
         `Developer 2`,
         `Developer 3`,
