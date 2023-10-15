@@ -21,5 +21,5 @@ from products import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^api/products/$', views.products_list),
-    re_path(r'^api/products/([0-9])$', views.products_detail),
+    re_path(r'^api/products/(?P<id>\d+)$', views.products_detail),
 ]

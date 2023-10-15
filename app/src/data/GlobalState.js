@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const randomProducts = [];
 for (let i = 1; i <= 40; i++) {
 const product = {
-    id: uuidv4(),
+    id: `${uuidv4()}-${i}`,
     productName: `Product ${i}`,
     productOwnerName: `Owner ${i}`,
     developers: [

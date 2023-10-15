@@ -5,4 +5,4 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product 
-        fields = ('pk', 'productName', 'productOwnerName', 'developers', 'scrumMasterName', 'startDate', 'methodology', 'location')
+        fields = ('id', 'productName', 'productOwnerName', 'developers', 'scrumMasterName', 'startDate', 'methodology', 'location')
