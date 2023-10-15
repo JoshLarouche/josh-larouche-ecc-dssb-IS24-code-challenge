@@ -5,11 +5,14 @@ import './tailwind.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GlobalProvider } from './data/GlobalState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>
   </BrowserRouter>
 );
 
