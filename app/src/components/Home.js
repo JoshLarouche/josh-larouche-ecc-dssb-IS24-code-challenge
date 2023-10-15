@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Heading } from "./Heading";
 import { ProductList } from "./ProductList";
+import { GlobalContext } from "../data/GlobalState"; // Import the GlobalContext
 
 export const Home = () => {
+  const { products } = useContext(GlobalContext); // Access the products array from the global context
+
   return (
     <React.Fragment>
       <div className="container mx-auto">
@@ -10,7 +13,11 @@ export const Home = () => {
           Product Manager
         </h3>
         <Heading />
-        <ProductList />
+        {products.length > 0 ? (
+          <ProductList />
+        ) : (
+          <p className="text-center bg-gray-100 text-gray-500 py-5">No data.</p>
+        )}
       </div>
     </React.Fragment>
   );

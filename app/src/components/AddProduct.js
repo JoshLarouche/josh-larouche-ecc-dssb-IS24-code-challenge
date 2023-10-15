@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
+import { v4 as uuidv4 } from 'uuid';
 import { GlobalContext } from '../data/GlobalState';
 
 export const AddProduct = () => {
@@ -19,7 +19,7 @@ export const AddProduct = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const newProduct = {
-      id: products.length + 1,
+      id: uuidv4(),
       productName,
       productOwnerName,
       developers,

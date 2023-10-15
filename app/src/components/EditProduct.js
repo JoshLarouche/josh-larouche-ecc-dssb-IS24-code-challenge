@@ -3,10 +3,15 @@ import { useHistory, Link } from 'react-router-dom';
 
 import { GlobalContext } from '../data/GlobalState';
 
-export const EditProduct = (route) => {
+import { useParams } from 'react-router-dom';
+
+export const EditProduct = () => {
   let history = useHistory();
 
-  const { products, editProduct } = useContext(GlobalContext);
+  const { products } = useContext(GlobalContext);
+  const { editProduct } = useContext(GlobalContext); // Get the editProduct function from the context
+
+  const { id } = useParams();
 
   const [selectedProduct, setSelectedProduct] = useState({
     id: null,
@@ -19,19 +24,21 @@ export const EditProduct = (route) => {
     location: "",
   });
 
-  const currentProductId = route.match.params.id;
-
   useEffect(() => {
-    const productId = currentProductId;
+    const productId = id;
     const selectedProduct = products.find(
       (currentProductTraversal) => currentProductTraversal.id === parseInt(productId)
     );
     setSelectedProduct(selectedProduct);
-  }, [currentProductId, products]);
+  }, [id, products]);
+
+  const updateProduct = (product) => {
+    editProduct(product); // Call the editProduct function to update the product
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editProduct(selectedProduct);
+    updateProduct(selectedProduct); // Call updateProduct with the edited product
     history.push("/");
   };
 
@@ -150,6 +157,14 @@ export const EditProduct = (route) => {
               type="text"
               placeholder="Enter location"
             />
+          </div>
+          <div className="w-full text-center mt-4">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Save Changes
+            </button>
           </div>
           <div className="text-center mt-4 text-gray-500">
             <Link to="/">Cancel</Link>
