@@ -29,7 +29,6 @@ function App() {
           </Route>
           <Route path="/" component={Home} exact>
             <Home />
-            <ProductList products={products} />
           </Route>
         </Switch>
       </div>
