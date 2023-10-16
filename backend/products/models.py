@@ -1,7 +1,8 @@
 from django.db import models
+import uuid
 
 class Product(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     productName = models.CharField("Product Name", max_length=240)
     productOwnerName = models.CharField("Product Owner Name", max_length=240)
     developers = models.CharField("Developers", max_length=240)

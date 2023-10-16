@@ -13,34 +13,27 @@ function App() {
 
   useEffect(() => {
     // Fetch the list of products from your Django backend API when the component mounts
-    fetch('http://localhost:3000/api/products/')
+    fetch('http://localhost:8000/api/products/')
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
   return (
     <Router>
       <div className="container">
-        <h1>Product Management</h1>
-        <Link to="/api/add">Add Product</Link>
         <Switch>
           <Route path="/api/add">
             <AddProduct />
           </Route>
-          <Route path="/">
+          <Route path="/api/edit/:id" component={EditProduct} exact> {/* Define the edit route */}
+            <EditProduct />
+          </Route>
+          <Route path="/" component={Home} exact>
+            <Home />
             <ProductList products={products} />
           </Route>
         </Switch>
       </div>
     </Router>
-    // <GlobalProvider>
-    //   <div className="App">
-    //     <Switch>
-    //       <Route path="/" component={Home} exact />
-    //       <Route path="/add" component={AddProduct} exact />
-    //       <Route path="/edit/:id" component={EditProduct} exact />
-    //     </Switch>
-    //   </div>
-    // </GlobalProvider>
   );
 }
 
