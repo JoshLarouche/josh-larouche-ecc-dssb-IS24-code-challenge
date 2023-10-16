@@ -12,7 +12,6 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch the list of products from your Django backend API when the component mounts
     fetch('http://localhost:8000/api/products/')
       .then((response) => response.json())
       .then((data) => setProducts(data));
@@ -24,7 +23,7 @@ function App() {
           <Route path="/api/add">
             <AddProduct />
           </Route>
-          <Route path="/api/edit/:id" component={EditProduct} exact> {/* Define the edit route */}
+          <Route path="/api/edit/:id" component={EditProduct} exact>
             <EditProduct />
           </Route>
           <Route path="/" component={Home} exact>
