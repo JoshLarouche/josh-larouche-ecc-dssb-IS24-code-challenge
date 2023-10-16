@@ -11,8 +11,8 @@ React Django CRUD app to list and search other web apps
 ### Clone the Repository
 
 ```bash
-git clone git@github.com:JoshLarouche/contact-manager-app.git
-cd contact-manager-app
+git clone git@github.com:JoshLarouche/josh-larouche-ecc-dssb-IS24-code-challenge.git
+cd josh-larouche-ecc-dssb-IS24-code-challenge
 ```
 
 ### Set Up a Virtual Environment (optional but recommended)
@@ -30,6 +30,7 @@ pip install -r requirements.txt
 
 ### Apply Database Migrations
 ```bash
+cd backend
 python manage.py migrate
 ```
 
