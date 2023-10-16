@@ -24,11 +24,15 @@ export const EditProduct = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/products/${id}`);
-        setSelectedProduct(response.data);
+        if (savedProduct) {
+          setSelectedProduct(savedProduct);
+        }
+        else {
+          setSelectedProduct(response.data);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
-        const selectedProduct = products.find(
-          (product) => product.id === id);
+        const selectedProduct = products.find((product) => product.id === id);
         if (selectedProduct) {
           setSelectedProduct(selectedProduct);
         } else {
@@ -36,6 +40,12 @@ export const EditProduct = () => {
         }
       }
     };
+
+    // Load data from local storage if it exists
+    const savedProduct = JSON.parse(localStorage.getItem('editedProduct'));
+    if (savedProduct) {
+      setSelectedProduct(savedProduct);
+    }
 
     fetchData();
   }, [id]);
@@ -52,7 +62,11 @@ export const EditProduct = () => {
   };
 
   const handleOnChange = (productKey, newValue) => {
-    setSelectedProduct({ ...selectedProduct, [productKey]: newValue });
+    const updatedProduct = { ...selectedProduct, [productKey]: newValue };
+    setSelectedProduct(updatedProduct);
+    
+    // Update local storage with the changed data
+    localStorage.setItem('editedProduct', JSON.stringify(updatedProduct));
   };
 
   const onSubmit = (e) => {
@@ -61,7 +75,7 @@ export const EditProduct = () => {
   };
 
   if (!selectedProduct || !selectedProduct.id) {
-    return <div>Invalid Product ID.</div>;
+    return <div>Loading...</div>;
   }
 
   return (
