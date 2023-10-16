@@ -28,79 +28,137 @@ export const AddProduct = () => {
     e.preventDefault();
 
     try {
-      // Send a POST request to your Django backend API to create a new product
       const response = await axios.post('http://localhost:8000/api/products/', product);
-
-      // Handle the response, e.g., show a success message
-      console.log('Product created:', response.data);
-
-      // Add the new product to the local state
       addProduct(response.data);
-
-      // Redirect to another page, e.g., the product list page
       history.push('/');
     } catch (error) {
-      // Handle errors, e.g., show an error message
       console.error('Error creating product:', error);
     }
   };
 
   return (
-    <div className="w-full max-w-sm container mt-20 mx-auto">
+    <div className="w-full max-w-md container mt-20 mx-auto">
       <form onSubmit={handleSubmit}>
-        {/* Input fields for product details */}
-        <input
-          type="text"
-          name="productName"
-          placeholder="Name of product"
-          value={product.productName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="productOwnerName"
-          placeholder="Name of product owner"
-          value={product.productOwnerName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="developers"
-          placeholder="Developers"
-          value={product.developers}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="scrumMasterName"
-          placeholder="Name of scrum master"
-          value={product.scrumMasterName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="startDate"
-          placeholder="Start Date"
-          value={product.startDate}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="methodology"
-          placeholder="Methodology"
-          value={product.methodology}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={product.location}
-          onChange={handleChange}
-        />
-        {/* Add similar input fields for other product details */}
-        <button type="submit">Add Product</button>
-        <Link to="/">Cancel</Link>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="productName"
+          >
+            Name of product
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="productName"
+            placeholder="Name of product"
+            value={product.productName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="productOwnerName"
+          >
+            Name of product owner
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="productOwnerName"
+            placeholder="Name of product owner"
+            value={product.productOwnerName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="developers"
+          >
+            Names of developers
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="developers"
+            placeholder="Developers"
+            value={product.developers}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="scrumMasterName"
+          >
+            Name of scrum master
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="scrumMasterName"
+            placeholder="Name of scrum master"
+            value={product.scrumMasterName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="startDate"
+          >
+            Start date
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="startDate"
+            placeholder="Start Date"
+            value={product.startDate}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="methodology"
+          >
+            Methodology
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="methodology"
+            placeholder="Methodology"
+            value={product.methodology}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-5 text-center">
+          <label
+            className="block text-gray-700 text-lg font-bold mb-2"
+            htmlFor="location"
+          >
+            Location
+          </label>
+          <input
+            className="w-full p-2 text-gray-700 rounded"
+            type="text"
+            name="location"
+            placeholder="Location"
+            value={product.location}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="text-center">
+          <button className="mt-5 bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Add Product
+          </button>
+        </div>
+        <div className="text-center mt-4 text-gray-500">
+          <Link to="/">Cancel</Link>
+        </div>
       </form>
     </div>
   );

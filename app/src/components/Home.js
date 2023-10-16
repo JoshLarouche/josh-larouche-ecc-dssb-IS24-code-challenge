@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Heading } from "./Heading";
 import { ProductList } from "./ProductList";
-import { GlobalContext } from "../data/GlobalState"; // Import the GlobalContext
+import { GlobalContext } from "../data/GlobalState";
 
 export const Home = () => {
-  const { products } = useContext(GlobalContext); // Access the products array from the global context
+  const { products } = useContext(GlobalContext); 
 
   return (
     <React.Fragment>

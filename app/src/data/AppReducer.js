@@ -5,7 +5,6 @@ export default function appReducer(state, action) {
         ...state,
         products: [...state.products, action.payload],
       };
-      console.log("New state after adding product:", newStateAfterAdd);
       return newStateAfterAdd;
 
     case "EDIT_PRODUCT":
@@ -20,7 +19,6 @@ export default function appReducer(state, action) {
         ...state,
         products: updatedProducts,
       };
-      console.log("New state after editing product:", newStateAfterEdit);
       return newStateAfterEdit;
 
     case "REMOVE_PRODUCT":
@@ -29,7 +27,6 @@ export default function appReducer(state, action) {
       ...state,
       products: state.products.filter((product) => product.id !== action.payload),
     };
-    console.log("New state after removing product:", newStateAfterRemove);
     return newStateAfterRemove;
 
     default:

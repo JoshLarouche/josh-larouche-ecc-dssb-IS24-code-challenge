@@ -8,17 +8,9 @@ export const ProductList = () => {
   const [apiProducts, setApiProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  console.log('Products:', products);
-  console.log('apiProducts:', apiProducts);
-
   const handleDelete = async (productId) => {
-    console.log('Delete button clicked for product ID:', productId);
-  
     try {
-      // Send a DELETE request to the API to delete the product
       await axios.delete(`http://localhost:8000/api/products/${productId}`);
-  
-      // If the delete request was successful, remove the product from apiProducts
       setApiProducts(apiProducts.filter(product => product.id !== productId));
     } catch (error) {
       console.error('Error deleting product: Trying to remove from initial mock data', error);
@@ -27,11 +19,10 @@ export const ProductList = () => {
   }
 
   useEffect(() => {
-    // Fetch product data from your Django API
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/products/');
-        setApiProducts(response.data); // Update state with API data
+        setApiProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -64,9 +55,7 @@ export const ProductList = () => {
   const renderProductList = () => {
     const allProducts = [...products, ...apiProducts];
     const filteredProducts = filterProducts(allProducts, searchTerm);
-    console.log('All Products:', allProducts);
-    console.log('Search Term:', searchTerm);
-    console.log('Filtered Products:', filteredProducts);
+    
     if (filteredProducts.length > 0) {
       return filteredProducts.map((product) => (
         <div
@@ -75,25 +64,25 @@ export const ProductList = () => {
         >
           <div className="flex-auto text-left px-4 py-2 m-2">
             <p className="text-gray-900 leading-none">
-              {product.productName}
+             <strong>Product Name: </strong>{product.productName}
             </p>
             <p className="text-gray-600">
-              {product.productOwnerName}
+             <strong>Product Owner Name: </strong>{product.productOwnerName}
             </p>
             <p className="text-gray-600">
-              {product.developers}
+             <strong>Developers: </strong>{product.developers}
             </p>
             <p className="text-gray-600">
-              {product.scrumMasterName}
+             <strong>Scrum Master Name: </strong>{product.scrumMasterName}
             </p>
             <p className="text-gray-600">
-              {product.startDate}
+             <strong>Start Date: </strong>{product.startDate}
             </p>
             <p className="text-gray-600">
-              {product.methodology}
+             <strong>Methodology: </strong>{product.methodology}
             </p>
             <p className="text-gray-600">
-              {product.location}
+             <strong>Location: </strong>{product.location}
             </p>
           </div>
           <div className="flex-auto text-right px-4 py-2 m-2">
@@ -121,6 +110,10 @@ export const ProductList = () => {
     }
   };
 
+  const allProducts = [...products, ...apiProducts];
+  const filteredProducts = filterProducts(allProducts, searchTerm);
+  const totalFilteredItems = filteredProducts.length; 
+
   return (
     <React.Fragment> 
       <div className="mb-4">
@@ -131,6 +124,7 @@ export const ProductList = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="p-2 border border-gray-300 rounded w-full"
         />
+        <p>Total Filtered Items: {totalFilteredItems}</p>
       </div>
 
       {renderProductList()}
